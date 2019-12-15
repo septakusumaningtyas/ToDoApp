@@ -46,16 +46,25 @@
                     />
             </LinearLayout>
             <Button
-                android:layout_width="52dp"
-                android:layout_height="52dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:background="@drawable/bgbtnnew"
                 android:layout_marginTop="35dp"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="30dp"
                 android:id="@+id/btnAddNew"
                 android:text="+"
                 android:textColor="#ffffff"
                 android:textAlignment="center"
                 android:textSize="40sp"
+                />
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bgbtnsetting"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/btnSetting"
+                android:src="@drawable/ic_settings_black_24dp"
                 />
         </LinearLayout>
         <View

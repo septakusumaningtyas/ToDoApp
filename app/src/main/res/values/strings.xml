@@ -3,4 +3,7 @@
     <string name="next">NEXT</string>
     <string name="skip">SKIP</string>
     <string name="start">GOT IT</string>
+
+    <string name="title_switch_preference">Language</string>
+    <string name="summary_switch_preference">English</string>
 </resources>
