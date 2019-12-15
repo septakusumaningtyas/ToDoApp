@@ -73,4 +73,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (doesAdapter != null) {
+            doesAdapter.startListening();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (doesAdapter != null) {
+            doesAdapter.stopListening();
+        }
+    }
 }
