@@ -4,6 +4,6 @@
     <string name="skip">SKIP</string>
     <string name="start">GOT IT</string>
 
-    <string name="title_switch_preference">Language</string>
-    <string name="summary_switch_preference">English</string>
+    <string name="title_list_preference">Language</string>
+    <string name="dialog_title_list_preference">Language</string>
 </resources>

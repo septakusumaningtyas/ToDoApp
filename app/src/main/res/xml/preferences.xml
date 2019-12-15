@@ -5,9 +5,12 @@
     <PreferenceCategory
         android:title="Setting">
 
-        <SwitchPreferenceCompat
-            android:key="switch"
-            android:title="@string/title_switch_preference"
-            android:summary="@string/summary_switch_preference"/>
+        <ListPreference
+            android:key="list"
+            android:title="@string/title_list_preference"
+            app:useSimpleSummaryProvider="true"
+            android:entries="@array/language"
+            android:entryValues="@array/language"
+            android:dialogTitle="@string/dialog_title_list_preference"/>
     </PreferenceCategory>
 </PreferenceScreen>
