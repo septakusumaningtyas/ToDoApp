@@ -9,7 +9,7 @@ public class ToDo {
     String titledoes,datedoes,descdoes;
     String keydoes;
 
-    public ToDo(String s, String toString, String string){
+    public ToDo(){
 
     }
 

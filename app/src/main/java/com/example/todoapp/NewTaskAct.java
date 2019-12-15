@@ -75,14 +75,14 @@ public class NewTaskAct extends AppCompatActivity {
 
                     }
                 });
-                final ToDo toDo = new ToDo(titleDoes.getText().toString(), descDoes.getText().toString(), dateDoes.getText().toString());
+                final ToDo toDo = new ToDo(titleDoes.getText().toString(), descDoes.getText().toString(), dateDoes.getText().toString(), keydoes);
                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.child(toDo.getTitledoes()).exists()){
                             Toast.makeText( NewTaskAct.this, "Massage already exists!", Toast.LENGTH_SHORT).show();
                     } else {
-                            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                                 NotificationChannel channel = new NotificationChannel("YOUR_CHANNEL_ID",
                                         "YOUR_CHANNEL_NAME",
@@ -92,8 +92,8 @@ public class NewTaskAct extends AppCompatActivity {
                             }
                             final NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "YOUR_CHANNEL_ID")
                                     .setSmallIcon(R.mipmap.ic_launcher) // notification icon
-                                    .setContentTitle("Notification") // title for notification
-                                    .setContentText("Berhasil memasukkan data!")// message for notification
+                                    .setContentTitle("Reminder") // title for notification
+                                    .setContentText("Do your task today!")// message for notification
                                     .setAutoCancel(true); // clear notification after click
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             PendingIntent pi = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);

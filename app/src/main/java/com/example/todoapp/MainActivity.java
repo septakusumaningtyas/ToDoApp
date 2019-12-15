@@ -2,6 +2,8 @@ package com.example.todoapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView titlepage,subtitlepage,endpage;
     Button btnAddNew;
+    ImageButton btnSetting;
 
     DatabaseReference reference;
     RecyclerView ourdoes;
@@ -72,20 +76,23 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"No Data",Toast.LENGTH_SHORT).show();
             }
         });
-    }
-    @Override
-    public void onStart() {
-        super.onStart();
-        if (doesAdapter != null) {
-            doesAdapter.startListening();
-        }
-    }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (doesAdapter != null) {
-            doesAdapter.stopListening();
-        }
+        btnSetting = findViewById(R.id.btnSetting);
+        btnSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFragment(new SettingFragment());
+            }
+        });
+    }
+    private void openFragment(Fragment fragment) {
+        openFragment(fragment, false);
+    }
+    private void openFragment(Fragment fragment, boolean addToBackstack) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        if (addToBackstack)
+            transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
