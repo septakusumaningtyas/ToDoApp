@@ -1,10 +1,15 @@
 package com.example.todoapp;
 
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class ToDo {
     String titledoes,datedoes,descdoes;
     String keydoes;
 
-    public ToDo(){
+    public ToDo(String s, String toString, String string){
 
     }
 
@@ -45,5 +50,14 @@ public class ToDo {
 
     public void setDescdoes(String descdoes) {
         this.descdoes = descdoes;
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("titledoes",  titledoes);
+        result.put("datedoes", datedoes);
+        result.put("descdoes", descdoes);
+        return result;
     }
 }

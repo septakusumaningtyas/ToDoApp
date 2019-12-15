@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,NewTaskAct.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
@@ -71,5 +72,20 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"No Data",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (doesAdapter != null) {
+            doesAdapter.startListening();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (doesAdapter != null) {
+            doesAdapter.stopListening();
+        }
     }
 }
