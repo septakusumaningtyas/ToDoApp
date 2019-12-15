@@ -54,6 +54,7 @@ public class EditTaskDesk extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             Intent intent = new Intent(EditTaskDesk.this,MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                         }
                         else
@@ -78,6 +79,7 @@ public class EditTaskDesk extends AppCompatActivity {
                         dataSnapshot.getRef().child("keydoes").setValue(keykeyDoes);
 
                         Intent intent = new Intent (EditTaskDesk.this,MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
 
