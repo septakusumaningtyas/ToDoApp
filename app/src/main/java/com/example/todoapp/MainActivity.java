@@ -1,13 +1,20 @@
 package com.example.todoapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.app.Application;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,9 +42,13 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<ToDo> list;
     DoesAdapter doesAdapter;
 
+    public static final String LIST_KEY = "list";
+    private SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocale();
         setContentView(R.layout.activity_main);
 
         titlepage = findViewById(R.id.titlepage);
@@ -81,18 +93,54 @@ public class MainActivity extends AppCompatActivity {
         btnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openFragment(new SettingFragment());
+                Intent intent = new Intent(MainActivity.this,SettingAct.class);
+                startActivity(intent);
+                showLanguageDialog();
+            }
+
+            private void showLanguageDialog() {
+                final String[] listItems = {"English", "Indonesian", "Dutch"};
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+                mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        if(i == 0) {
+                            setLocale("English");
+                            recreate();
+                        }
+                        else if(i == 1) {
+                            setLocale("Indonesian");
+                            recreate();
+                        }
+                        else if (i == 2) {
+                            setLocale("Dutch");
+                            recreate();
+                        }
+                        AlertDialog mDialog = mBuilder.create();
+                        mDialog.show();
+
+                    }
+                });
             }
         });
+
     }
-    private void openFragment(Fragment fragment) {
-        openFragment(fragment, false);
+
+    private void loadLocale() {
+        SharedPreferences prefs = getSharedPreferences("Setting", Activity.MODE_PRIVATE);
+        String language = prefs.getString("My_Lang", "");
+        setLocale(language);
     }
-    private void openFragment(Fragment fragment, boolean addToBackstack) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, fragment);
-        if (addToBackstack)
-            transaction.addToBackStack(null);
-        transaction.commit();
+
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+        SharedPreferences.Editor editor = getSharedPreferences("Setting", MODE_PRIVATE).edit();
+        editor.putString("My_Lang", lang);
+        editor.apply();
     }
 }

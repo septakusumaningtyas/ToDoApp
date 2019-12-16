@@ -67,18 +67,6 @@
                 android:src="@drawable/ic_settings_black_24dp"
                 />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <FrameLayout
-                android:id="@+id/fragment_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#ffffff"
-                >
-            </FrameLayout>
-        </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

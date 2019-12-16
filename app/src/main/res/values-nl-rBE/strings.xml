@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">To Do</string>
+    <string name="next" translatable="false">De Volgende</string>
+    <string name="skip" translatable="false">Overslaan</string>
+    <string name="start" translatable="false">Okay</string>
+
+    <string name="title_list_preference" translatable="false">De Taal</string>
+    <string name="dialog_title_list_preference" translatable="false">De Taal</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false"> Leeg Fragment </string>
+    <string name="my_does" translatable="false">Mijn Activiteiten</string>
+    <string name="finish_them_quickly" translatable="false">Maak Ze Snel Af</string>
+    <string name="no_more_does" translatable="false">Niet Meer Doet</string>
+</resources>

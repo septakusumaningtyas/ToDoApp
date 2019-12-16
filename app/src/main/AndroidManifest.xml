@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".NewTaskAct" />
+        <activity android:name=".SettingAct" />
         <activity android:name=".MainActivity" />
     </application>
 
