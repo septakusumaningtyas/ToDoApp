@@ -93,37 +93,37 @@ public class MainActivity extends AppCompatActivity {
         btnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,SettingAct.class);
-                startActivity(intent);
+//                Intent intent = new Intent(MainActivity.this,SettingAct.class);
+//                startActivity(intent);
                 showLanguageDialog();
-            }
-
-            private void showLanguageDialog() {
-                final String[] listItems = {"English", "Indonesian", "Dutch"};
-                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
-                mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int i) {
-                        if(i == 0) {
-                            setLocale("English");
-                            recreate();
-                        }
-                        else if(i == 1) {
-                            setLocale("Indonesian");
-                            recreate();
-                        }
-                        else if (i == 2) {
-                            setLocale("Dutch");
-                            recreate();
-                        }
-                        AlertDialog mDialog = mBuilder.create();
-                        mDialog.show();
-
-                    }
-                });
             }
         });
 
+    }
+
+    private void showLanguageDialog() {
+        final String[] listItems = {"English", "Indonesian", "Dutch"};
+        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+        mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                if(i == 0) {
+                    setLocale("English");
+                    recreate();
+                }
+                else if(i == 1) {
+                    setLocale("Indonesian");
+                    recreate();
+                }
+                else if (i == 2) {
+                    setLocale("Dutch");
+                    recreate();
+                }
+                AlertDialog mDialog = mBuilder.create();
+                mDialog.show();
+
+            }
+        });
     }
 
     private void loadLocale() {
