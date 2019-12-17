@@ -34,7 +34,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     TextView titlepage,subtitlepage,endpage;
-    Button btnAddNew;
+    ImageButton btnAddNew;
     ImageButton btnSetting;
 
     DatabaseReference reference;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadLocale();
+//        loadLocale();
         setContentView(R.layout.activity_main);
 
         titlepage = findViewById(R.id.titlepage);
@@ -93,54 +93,54 @@ public class MainActivity extends AppCompatActivity {
         btnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this,SettingAct.class);
-//                startActivity(intent);
-                showLanguageDialog();
+                Intent intent = new Intent(MainActivity.this,SettingAct.class);
+                startActivity(intent);
+//                showLanguageDialog();
             }
         });
 
     }
 
-    private void showLanguageDialog() {
-        final String[] listItems = {"English", "Indonesian", "Dutch"};
-        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
-        mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int i) {
-                if(i == 0) {
-                    setLocale("English");
-                    recreate();
-                }
-                else if(i == 1) {
-                    setLocale("Indonesian");
-                    recreate();
-                }
-                else if (i == 2) {
-                    setLocale("Dutch");
-                    recreate();
-                }
-                AlertDialog mDialog = mBuilder.create();
-                mDialog.show();
-
-            }
-        });
-    }
-
-    private void loadLocale() {
-        SharedPreferences prefs = getSharedPreferences("Setting", Activity.MODE_PRIVATE);
-        String language = prefs.getString("My_Lang", "");
-        setLocale(language);
-    }
-
-    private void setLocale(String lang) {
-        Locale locale = new Locale(lang);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-
-        SharedPreferences.Editor editor = getSharedPreferences("Setting", MODE_PRIVATE).edit();
-        editor.putString("My_Lang", lang);
-        editor.apply();
-    }
+//    private void showLanguageDialog() {
+//        final String[] listItems = {"English", "Indonesian", "Dutch"};
+//        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+//        mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int i) {
+//                if(i == 0) {
+//                    setLocale("English");
+//                    recreate();
+//                }
+//                else if(i == 1) {
+//                    setLocale("Indonesian");
+//                    recreate();
+//                }
+//                else if (i == 2) {
+//                    setLocale("Dutch");
+//                    recreate();
+//                }
+//                AlertDialog mDialog = mBuilder.create();
+//                mDialog.show();
+//
+//            }
+//        });
+//    }
+//
+//    private void loadLocale() {
+//        SharedPreferences prefs = getSharedPreferences("Setting", Activity.MODE_PRIVATE);
+//        String language = prefs.getString("My_Lang", "");
+//        setLocale(language);
+//    }
+//
+//    private void setLocale(String lang) {
+//        Locale locale = new Locale(lang);
+//        Locale.setDefault(locale);
+//        Configuration config = new Configuration();
+//        config.locale = locale;
+//        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+//
+//        SharedPreferences.Editor editor = getSharedPreferences("Setting", MODE_PRIVATE).edit();
+//        editor.putString("My_Lang", lang);
+//        editor.apply();
+//    }
 }

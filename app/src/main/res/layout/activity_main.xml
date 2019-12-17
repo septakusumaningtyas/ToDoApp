@@ -45,17 +45,14 @@
                     android:fontFamily="@font/mlight"
                     />
             </LinearLayout>
-            <Button
+            <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/bgbtnnew"
                 android:layout_marginTop="35dp"
                 android:layout_marginLeft="30dp"
                 android:id="@+id/btnAddNew"
-                android:text="+"
-                android:textColor="#ffffff"
-                android:textAlignment="center"
-                android:textSize="40sp"
+                android:src="@drawable/ic_add_black_24dp"
                 />
             <ImageButton
                 android:layout_width="50dp"
