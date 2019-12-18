@@ -22,13 +22,12 @@ public class SettingFragment extends PreferenceFragmentCompat {
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
     private SharedPreferences sharedPref;
     private ListPreference language;
-    public static final String KEY_PREF_LANGUAGE = "pref_language";
+    public static final String KEY_PREF_LANGUAGE = "list";
     public String languagePref_ID;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
         SharedPreferences.OnSharedPreferenceChangeListener listener =
@@ -59,7 +58,7 @@ public class SettingFragment extends PreferenceFragmentCompat {
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-
+        setPreferencesFromResource(R.xml.preferences, rootKey);
     }
 
     @Override

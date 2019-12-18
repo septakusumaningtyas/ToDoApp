@@ -10,17 +10,22 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
 
 import java.util.Locale;
 
 public class SettingAct extends AppCompatActivity {
-    public static final String KEY_PREF_LANGUAGE = "pref_language";
-    public String languagePref_ID;
+    public static final String KEY_PREF_LANGUAGE = "list";
+    public String languagePref_ID="0";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        openFragment(new SettingFragment());
+
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String languagePref_ID = sharedPref.getString(KEY_PREF_LANGUAGE, "3");
@@ -39,7 +44,7 @@ public class SettingAct extends AppCompatActivity {
                 break;
 
         }
-        setContentView(R.layout.activity_main);
+
     }
 
     @Override
@@ -91,5 +96,17 @@ public class SettingAct extends AppCompatActivity {
     public void startSettingsActivity(View view) {
         Intent intent = new Intent(this, SettingAct.class);
         startActivity(intent);
+    }
+
+    private void openFragment(Fragment fragment) {
+        openFragment(fragment, false);
+    }
+
+    private void openFragment(Fragment fragment, boolean addToBackstack) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        if (addToBackstack)
+            transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
