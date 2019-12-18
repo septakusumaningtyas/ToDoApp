@@ -1,15 +1,11 @@
 <resources>
     <string name="app_name">To Do</string>
-    <string name="next" translatable="false">NEXT</string>
-    <string name="skip" translatable="false">SKIP</string>
-    <string name="start" translatable="false">GOT IT</string>
+    <string name="text_translation" translatable="false">My Does, Finish Them Quickly. No More Does</string>
 
-    <string name="title_list_preference" translatable="false">Language</string>
-    <string name="dialog_title_list_preference" translatable="false">Language</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="my_does" translatable="false">My Does</string>
-    <string name="finish_them_quickly" translatable="false">Finish Them Quickly</string>
-    <string name="no_more_does" translatable="false">No More Does</string>
+    <string-array name="language_option">
+        <item>English</item>
+        <item>Indonesian</item>
+        <item>Dutch</item>
+    </string-array>
 </resources>
