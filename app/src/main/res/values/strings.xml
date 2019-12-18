@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">To Do</string>
     <string name="text_translation" translatable="false">My Does, Finish Them Quickly. No More Does</string>
+    <string name="no_more_does" translatable="false" />
+    <string name="finish_them_quickly" translatable="false" />
+    <string name="my_does" translatable="false" />
+    <string name="title_list_preference" translatable="false" />
+    <string name="dialog_title_list_preference" translatable="false" />
+    <string name="start" translatable="false" />
+    <string name="next" translatable="false" />
 
 
     <string-array name="language_option">
