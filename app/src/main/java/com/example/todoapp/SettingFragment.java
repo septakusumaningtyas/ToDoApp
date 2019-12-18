@@ -25,9 +25,13 @@ public class SettingFragment extends PreferenceFragmentCompat {
     public static final String KEY_PREF_LANGUAGE = "list";
     public String languagePref_ID;
 
+    final String English = getString(R.string.English);
+    final String Deutch = getString(R.string.Deutch);
+    final String Indonesia = getString(R.string.Indonesia);
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        setPreferencesFromResource(R.xml.preferences, rootKey);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
         SharedPreferences.OnSharedPreferenceChangeListener listener =
@@ -37,61 +41,57 @@ public class SettingFragment extends PreferenceFragmentCompat {
                             languagePref_ID = prefs.getString(SettingAct.KEY_PREF_LANGUAGE, "3");
                             switch (languagePref_ID) {
                                 case "1":
-                                    Locale localeEN = new Locale("EN");
+                                    Locale localeEN = new Locale(English);
                                     setLocale(localeEN);
                                     break;
                                 case "2":
-                                    Locale localeDE = new Locale("DE");
+                                    Locale localeDE = new Locale(Deutch);
                                     setLocale(localeDE);
                                     break;
                                 case "3":
-                                    Locale localeIN = new Locale("IN");
+                                    Locale localeIN = new Locale(Indonesia);
                                     setLocale(localeIN);
                                     break;
+                                default:
+                                    throw new IllegalStateException("Unexpected value: " + languagePref_ID);
                             }
                         }
                     }
                 };
         sharedPref.registerOnSharedPreferenceChangeListener(listener);
-        addPreferencesFromResource(R.xml.preferences);
     }
 
-    @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        setPreferencesFromResource(R.xml.preferences, rootKey);
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener((SharedPreferences.OnSharedPreferenceChangeListener) this.getContext());
+//    }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener((SharedPreferences.OnSharedPreferenceChangeListener) this.getContext());
-    }
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener((SharedPreferences.OnSharedPreferenceChangeListener) getContext());
+//    }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener((SharedPreferences.OnSharedPreferenceChangeListener) getContext());
-    }
-
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(KEY_PREF_LANGUAGE)) {
-            languagePref_ID = sharedPreferences.getString(SettingAct.KEY_PREF_LANGUAGE, "3");
-            switch (languagePref_ID) {
-                case "1":
-                    Locale localeEN = new Locale("EN");
-                    setLocale(localeEN);
-                    break;
-                case "2":
-                    Locale localeDE = new Locale("DE");
-                    setLocale(localeDE);
-                    break;
-                case "3":
-                    Locale localeIN = new Locale("IN");
-                    setLocale(localeIN);
-                    break;
-            }
-        }
-    }
+//    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+//        if (key.equals(KEY_PREF_LANGUAGE)) {
+//            languagePref_ID = sharedPreferences.getString(SettingAct.KEY_PREF_LANGUAGE, "3");
+//            switch (languagePref_ID) {
+//                case "1":
+//                    Locale localeEN = new Locale("EN");
+//                    setLocale(localeEN);
+//                    break;
+//                case "2":
+//                    Locale localeDE = new Locale("DE");
+//                    setLocale(localeDE);
+//                    break;
+//                case "3":
+//                    Locale localeIN = new Locale("IN");
+//                    setLocale(localeIN);
+//                    break;
+//            }
+//        }
+//    }
 
     public void setLocale(Locale locale) {
         Locale.setDefault(locale);

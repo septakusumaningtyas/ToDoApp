@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">To Do</string>
+    <string name="finish_them_quickly">Finish Them Quickly</string>
+    <string name="my_does">My Does</string>
+    <string name="no_more_does">No More Does</string>
+    <string name="English"></string>
+</resources>

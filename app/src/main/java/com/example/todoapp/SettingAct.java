@@ -20,9 +20,14 @@ public class SettingAct extends AppCompatActivity {
     public static final String KEY_PREF_LANGUAGE = "list";
     public String languagePref_ID="0";
 
+    final String English = getString(R.string.English);
+    final String Deutch = getString(R.string.Deutch);
+    final String Indonesia = getString(R.string.Indonesia);
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_setting);
 
         openFragment(new SettingFragment());
 
@@ -31,15 +36,15 @@ public class SettingAct extends AppCompatActivity {
         String languagePref_ID = sharedPref.getString(KEY_PREF_LANGUAGE, "3");
         switch (languagePref_ID) {
             case "1":
-                Locale localeEN = new Locale("EN");
+                Locale localeEN = new Locale(English);
                 setLocaleOnCreate(localeEN);
                 break;
             case "2":
-                Locale localeDE = new Locale("DE");
+                Locale localeDE = new Locale(Deutch);
                 setLocaleOnCreate(localeDE);
                 break;
             case "3":
-                Locale localeIN = new Locale("IN");
+                Locale localeIN = new Locale(Indonesia);
                 setLocaleOnCreate(localeIN);
                 break;
 
@@ -55,17 +60,17 @@ public class SettingAct extends AppCompatActivity {
         if (!languagePref_ID.equals(languagePref_ID_RES)) {
             languagePref_ID_RES = languagePref_ID;
             switch (languagePref_ID_RES) {
+                case "0":
+                    Locale localeEN = new Locale(English);
+                    setLocale(localeEN);
+                    break;
                 case "1":
-                    Locale localeEN = new Locale("EN");
-                    setLocaleOnCreate(localeEN);
+                    Locale localeDE = new Locale(Deutch);
+                    setLocale(localeDE);
                     break;
                 case "2":
-                    Locale localeDE = new Locale("DE");
-                    setLocaleOnCreate(localeDE);
-                    break;
-                case "3":
-                    Locale localeIN = new Locale("IN");
-                    setLocaleOnCreate(localeIN);
+                    Locale localeIN = new Locale(Indonesia);
+                    setLocale(localeIN);
                     break;
 
             }

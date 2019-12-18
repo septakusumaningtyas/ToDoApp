@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">To Do</string>
+    <string name="text_translation" translatable="false">" Meine Aktivitäten, Beende es schnell, Es gibt keine weiteren Aktivitäten"</string>
+    <string name="my_does">Meine Aktivitäten</string>
+    <string name="finish_them_quickly">Beende es schnell</string>
+    <string name="no_more_does">Es gibt keine weiteren Aktivitäten</string>
+    <string name="Deutch" />
+</resources>

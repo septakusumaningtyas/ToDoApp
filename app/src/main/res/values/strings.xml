@@ -5,13 +5,12 @@
     <string name="start" translatable="false">GOT IT</string>
     <string name="title_list_preference" translatable="false">Language</string>
     <string name="dialog_title_list_preference" translatable="false">Language</string>
-    <string name="text_translation" translatable="false">My Does, Finish Them Quickly. No More Does</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="my_does" translatable="false">My Does</string>
-    <string name="finish_them_quickly" translatable="false">Finish Them Quickly</string>
-    <string name="no_more_does" translatable="false">No More Does</string>
+    <string name="my_does" translatable="true">My Does</string>
+    <string name="finish_them_quickly" translatable="true">Finish Them Quickly</string>
+    <string name="no_more_does">No More Does</string>
 
 
     <string-array name="language_option">
@@ -19,4 +18,15 @@
         <item>Indonesian</item>
         <item>Dutch</item>
     </string-array>
+
+    <string name="title_switch_preference" translatable="false">Dark Mode</string>
+    <string name="summary_switch_preference" translatable="false">Night Mode</string>
+
+    <string name="Deutch" translatable="false"/>
+    <string name="text_translation1" translatable="false">" Meine Aktivitäten, Beende es schnell, Es gibt keine weiteren Aktivitäten"</string>
+
+    <string name="Indonesia" translatable="false"/>
+    <string name="text_translation2" translatable="false">Kegiatan ku, Selesaikan dengan cepat. Tidak ada kegiatan lagi</string>
+
+    <string name="English" translatable="false"/>
 </resources>

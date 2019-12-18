@@ -2,4 +2,8 @@
 <resources>
     <string name="app_name">To Do</string>
     <string name="text_translation" translatable="false">Kegiatan ku, Selesaikan dengan cepat. Tidak ada kegiatan lagi</string>
+    <string name="my_does">Kegiatanku</string>
+    <string name="finish_them_quickly">Selesaikan dengan cepat</string>
+    <string name="no_more_does">Tidak ada kegiatan</string>
+    <string name="Indonesia">in</string>
 </resources>
