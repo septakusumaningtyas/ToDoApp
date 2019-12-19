@@ -9,6 +9,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -37,6 +38,13 @@ public class NewTaskAct extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences preferences = getSharedPreferences("SETTINGS", MODE_PRIVATE);
+        boolean useDarkMode = preferences.getBoolean("DARK_MODE", false);
+
+        if (useDarkMode) {
+            setTheme(R.style.ActivityThemeDark);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_task);
 

@@ -1,10 +1,18 @@
 package com.example.todoapp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -17,128 +25,54 @@ import java.util.Locale;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SettingFragment extends PreferenceFragmentCompat {
-    public static final String TAG = "list";
-    private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
-    private SharedPreferences sharedPref;
-    private ListPreference language;
-    public static final String KEY_PREF_LANGUAGE = "list";
-    public String languagePref_ID;
+public class SettingFragment extends Fragment {
+    private Switch myswitch;
+    private Context context;
 
-    final String English = getString(R.string.English);
-    final String Deutch = getString(R.string.Deutch);
-    final String Indonesia = getString(R.string.Indonesia);
+    public SettingFragment() {
+        // Required empty public constructor
+    }
 
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        setPreferencesFromResource(R.xml.preferences, rootKey);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Context contextThemeWrapper;
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
-        SharedPreferences.OnSharedPreferenceChangeListener listener =
-                new SharedPreferences.OnSharedPreferenceChangeListener() {
-                    public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-                        if (key.equals(KEY_PREF_LANGUAGE)) {
-                            languagePref_ID = prefs.getString(SettingAct.KEY_PREF_LANGUAGE, "3");
-                            switch (languagePref_ID) {
-                                case "1":
-                                    Locale localeEN = new Locale(English);
-                                    setLocale(localeEN);
-                                    break;
-                                case "2":
-                                    Locale localeDE = new Locale(Deutch);
-                                    setLocale(localeDE);
-                                    break;
-                                case "3":
-                                    Locale localeIN = new Locale(Indonesia);
-                                    setLocale(localeIN);
-                                    break;
-                                default:
-                                    throw new IllegalStateException("Unexpected value: " + languagePref_ID);
-                            }
-                        }
-                    }
-                };
-        sharedPref.registerOnSharedPreferenceChangeListener(listener);
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("SETTINGS", Context.MODE_PRIVATE);
+        boolean useDarkMode = preferences.getBoolean("DARK_MODE", false);
+
+        if (useDarkMode) {
+            contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.ActivityThemeDark);
+        } else {
+            contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.ActivityThemeLight);
+        }
+
+        LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
+        View view = localInflater.inflate(R.layout.activity_setting_fragment, container, false);
+
+        myswitch=view.findViewById(R.id.my_switch);
+        myswitch.setChecked(useDarkMode);
+
+        myswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                switchDarkMode(b);
+            }
+        });
+
+        return view;
     }
 
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener((SharedPreferences.OnSharedPreferenceChangeListener) this.getContext());
-//    }
+    private void switchDarkMode(boolean darkMode) {
+        SharedPreferences.Editor editor = getActivity().getSharedPreferences("SETTINGS", Context.MODE_PRIVATE).edit();
+        editor.putBoolean("DARK_MODE", darkMode);
+        editor.apply();
 
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener((SharedPreferences.OnSharedPreferenceChangeListener) getContext());
-//    }
+        Intent i=new Intent(getActivity().getApplicationContext(), MainActivity.class);
+        startActivity(i);
+        getActivity().finish();
 
-//    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-//        if (key.equals(KEY_PREF_LANGUAGE)) {
-//            languagePref_ID = sharedPreferences.getString(SettingAct.KEY_PREF_LANGUAGE, "3");
-//            switch (languagePref_ID) {
-//                case "1":
-//                    Locale localeEN = new Locale("EN");
-//                    setLocale(localeEN);
-//                    break;
-//                case "2":
-//                    Locale localeDE = new Locale("DE");
-//                    setLocale(localeDE);
-//                    break;
-//                case "3":
-//                    Locale localeIN = new Locale("IN");
-//                    setLocale(localeIN);
-//                    break;
-//            }
-//        }
-//    }
-
-    public void setLocale(Locale locale) {
-        Locale.setDefault(locale);
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
-        conf.locale = locale;
-        res.updateConfiguration(conf, dm);
-//        recreate();
+        getActivity().overridePendingTransition(0, 0);
     }
 }
-
-//    @Override
-//    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-//        setPreferencesFromResource(R.xml.preferences, rootKey);
-//    }
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//
-//        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(preferenceChangeListener);
-//    }
-//
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//
-//        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(preferenceChangeListener);
-//    }
-
-//    private void loadLocale() {
-//        SharedPreferences prefs = getPreferenceManager("Setting", MODE_PRIVATE);
-//        String language = prefs.getString("My_Lang", "");
-//        setLocale(language);
-//    }
-//
-//    private void setLocale(String lang) {
-//        Locale locale = new Locale(lang);
-//        Locale.setDefault(locale);
-//        Configuration config = new Configuration();
-//        config.locale = locale;
-//        getActivity().getResources().updateConfiguration(config, getActivity().getResources().getDisplayMetrics());
-//
-//        SharedPreferences.Editor editor = getPreferenceManager("Setting", MODE_PRIVATE).edit();
-//        editor.putString("My_Lang", lang);
-//        editor.apply();
-//    }
 
 

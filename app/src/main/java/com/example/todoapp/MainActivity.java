@@ -11,11 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -33,7 +36,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView titlepage,subtitlepage,endpage;
+    TextView titlepage, subtitlepage, endpage;
     ImageButton btnAddNew;
     ImageButton btnSetting;
 
@@ -47,8 +50,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences preferences = getSharedPreferences("SETTINGS", MODE_PRIVATE);
+        boolean useDarkMode = preferences.getBoolean("DARK_MODE", false);
+
+        if (useDarkMode) {
+            setTheme(R.style.ActivityThemeDark);
+        }
+
         super.onCreate(savedInstanceState);
-//      loadLocale();
         setContentView(R.layout.activity_main);
 
         titlepage = findViewById(R.id.titlepage);
@@ -59,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         btnAddNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,NewTaskAct.class);
+                Intent intent = new Intent(MainActivity.this, NewTaskAct.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
@@ -73,19 +82,18 @@ public class MainActivity extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
-                {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     ToDo p = dataSnapshot1.getValue(ToDo.class);
                     list.add(p);
                 }
-                doesAdapter = new DoesAdapter(MainActivity.this,list);
+                doesAdapter = new DoesAdapter(MainActivity.this, list);
                 doesAdapter.notifyDataSetChanged();
                 ourdoes.setAdapter(doesAdapter);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(),"No Data",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "No Data", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -93,54 +101,21 @@ public class MainActivity extends AppCompatActivity {
         btnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,SettingFragment.class);
-                startActivity(intent);
-//                showLanguageDialog();
+                setContentView(R.layout.activity_setting_fragment);
+                openFragment(new SettingFragment());
             }
         });
-
     }
 
-//    private void showLanguageDialog() {
-//        final String[] listItems = {"English", "Indonesian", "Dutch"};
-//        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
-//        mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int i) {
-//                if(i == 0) {
-//                    setLocale("English");
-//                    recreate();
-//                }
-//                else if(i == 1) {
-//                    setLocale("Indonesian");
-//                    recreate();
-//                }
-//                else if (i == 2) {
-//                    setLocale("Dutch");
-//                    recreate();
-//                }
-//                AlertDialog mDialog = mBuilder.create();
-//                mDialog.show();
-//
-//            }
-//        });
-//    }
-//
-//    private void loadLocale() {
-//        SharedPreferences prefs = getSharedPreferences("Setting", Activity.MODE_PRIVATE);
-//        String language = prefs.getString("My_Lang", "");
-//        setLocale(language);
-//    }
-//
-//    private void setLocale(String lang) {
-//        Locale locale = new Locale(lang);
-//        Locale.setDefault(locale);
-//        Configuration config = new Configuration();
-//        config.locale = locale;
-//        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-//
-//        SharedPreferences.Editor editor = getSharedPreferences("Setting", MODE_PRIVATE).edit();
-//        editor.putString("My_Lang", lang);
-//        editor.apply();
-//    }
+    private void openFragment(Fragment fragment) {
+        openFragment(fragment, false);
+    }
+
+    private void openFragment(Fragment fragment, boolean addToBackstack) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        if (addToBackstack)
+            transaction.addToBackStack(null);
+        transaction.commit();
+    }
 }
