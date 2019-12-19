@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         btnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,SettingAct.class);
+                Intent intent = new Intent(MainActivity.this,SettingFragment.class);
                 startActivity(intent);
 //                showLanguageDialog();
             }

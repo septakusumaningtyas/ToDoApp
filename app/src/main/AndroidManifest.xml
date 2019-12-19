@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SettingFragment"></activity>
+        <activity android:name=".SharedPref" />
         <activity android:name=".WelcomeAct" />
         <activity android:name=".EditTaskDesk" />
         <activity android:name=".SplashAct">
@@ -19,7 +21,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".NewTaskAct" />
-        <activity android:name=".SettingAct" />
         <activity android:name=".MainActivity" />
     </application>
 

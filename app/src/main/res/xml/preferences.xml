@@ -12,9 +12,6 @@
             android:entries="@array/language"
             android:entryValues="@array/language"
             android:dialogTitle="@string/dialog_title_list_preference"/>
-        <SwitchPreferenceCompat
-            android:key="switch"
-            android:title="@string/title_switch_preference"
-            android:summary="@string/summary_switch_preference"/>
+
     </PreferenceCategory>
 </PreferenceScreen>

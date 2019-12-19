@@ -22,11 +22,11 @@
     <string name="title_switch_preference" translatable="false">Dark Mode</string>
     <string name="summary_switch_preference" translatable="false">Night Mode</string>
 
-    <string name="Deutch" translatable="false"/>
+    <string name="Deutch" translatable="false" />
     <string name="text_translation1" translatable="false">" Meine Aktivitäten, Beende es schnell, Es gibt keine weiteren Aktivitäten"</string>
 
-    <string name="Indonesia" translatable="false"/>
+    <string name="Indonesia" translatable="false" />
     <string name="text_translation2" translatable="false">Kegiatan ku, Selesaikan dengan cepat. Tidak ada kegiatan lagi</string>
 
-    <string name="English" translatable="false"/>
+    <string name="English" translatable="false" />
 </resources>

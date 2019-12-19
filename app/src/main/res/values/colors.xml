@@ -5,7 +5,7 @@
     <color name="colorAccent">#D81B60</color>
 
     <!-- Screens background color-->
-    <color name="bg_screen1">#dd352e</color>
+    <color name="bg_screen1">#3F51B5</color>
     <color name="bg_screen2">#ebba16</color>
 
     <!-- dots inactive colors -->
@@ -25,4 +25,23 @@
         <item>@color/dot_dark_screen1</item>
         <item>@color/dot_dark_screen2</item>
     </array>
+
+    <color name="primaryDark">#141d26</color>
+    <color name="black">#000000</color>
+    <color name="red">#D32F2F</color>
+
+
+    <color name="white">#FFFFFF</color>
+    <color name="primaryBackground">#29336D</color>
+    <color name="primaryBackgroundDark">#3F51B5</color>
+    <color name="primaryBackgroundAlpha">#2D526F</color>
+    <color name="primaryBackgroundAlphaDark">#604A64</color>
+    <color name="cardBackground">#FFFFFF</color>
+    <color name="text">#2C2C2C</color>
+    <color name="accent">#685353</color>
+    <color name="accentDark">#1C1E2E</color>
+
+    <color name="backgroundDark">#160F30</color>
+    <color name="cardBackgroundDark">#251F29</color>
+    <color name="textDark">#CAC9C9</color>
 </resources>
